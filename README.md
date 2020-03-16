@@ -4,3 +4,5 @@ collect docker compose
 * mysql
 * postgres
 * redis
+* mongodb
+* wordpress
