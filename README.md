@@ -6,3 +6,4 @@ collect docker compose
 * redis
 * mongodb
 * wordpress
+* php stack
