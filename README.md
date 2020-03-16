@@ -7,3 +7,4 @@ collect docker compose
 * mongodb
 * wordpress
 * php stack
+* elasticsearch & kibana
