@@ -1,5 +1,5 @@
 # docker_collect
-collect docker compose 
+collect docker compose
 
 * mysql
 * postgres
@@ -8,3 +8,6 @@ collect docker compose
 * wordpress
 * php stack
 * elasticsearch & kibana
+* kafka
+* rabbitMQ
+* php-stack
