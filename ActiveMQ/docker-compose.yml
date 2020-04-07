@@ -1,0 +1,26 @@
+version: '2.2'
+
+services:
+  activemq:
+      image: ivonet/activemq
+      ports:
+      - "8161:8161"
+      - "61616:61616"
+      - "61613:61613"
+      environment:
+      - ACTIVEMQ_MIN_MEMORY=512
+      - ACTIVEMQ_MAX_MEMORY=2048
+      - ACTIVEMQ_ENABLED_AUTH=true
+      - ACTIVEMQ_ADMIN_LOGIN=admin
+      - ACTIVEMQ_ADMIN_PASSWORD=pass
+  #    - ACTIVEMQ_REMOVE_DEFAULT_ACCOUNT=true
+  #    - ACTIVEMQ_WRITE_LOGIN=producer
+  #    - ACTIVEMQ_WRITE_PASSWORD=secret
+  #    - ACTIVEMQ_READ_LOGIN=consumer
+  #    - ACTIVEMQ_READ_PASSWORD=secret
+  #    - ACTIVEMQ_JMX_LOGIN=jmx
+  #    - ACTIVEMQ_JMX_PASSWORD=secret
+  #    - ACTIVEMQ_USER_LOGIN=user
+  #    - ACTIVEMQ_USER_PASSWORD=user
+      volumes:
+      - ./volumes/log/activemq:/var/log/activemq
