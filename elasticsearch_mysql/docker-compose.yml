@@ -1,0 +1,18 @@
+version: "3.0"
+services:
+  es_7:
+      image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
+      ports:
+      - 9200:9200
+      - 9300:9300
+      environment:
+        - discovery.type=single-node
+  mysql8:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports: 
+      - "3306:3306"
+
