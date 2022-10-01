@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  aerospike:
+    image: aerospike:5.4.0.1
+    ports:
+      - 3000:3000
+    command: [ "--config-file","/run/secrets/aerospike.conf"]
+    secrets:
+      - source: conffile
+        target: aerospike.conf
+        mode: 0440
+    volumes:
+      - aerospike_data:/opt/aerospike/data
+
+volumes:
+  aerospike_data:
+
+secrets:
+  conffile:
+    file: ./conf/as/aerospike.conf
