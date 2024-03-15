@@ -1,0 +1,62 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:12
+    container_name: postgres_container
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "5432:5432"
+    environment:
+      - PGHOST=localhost
+      - PGDATABASE=postgres
+      - PGUSER=postgres
+      - POSTGRES_PASSWORD=password@123
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+  redis:
+    image: 'bitnami/redis:7.0'
+    restart: always
+    environment:
+      - REDIS_PASSWORD=password@123
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+    ports:
+      - '6379:6379'
+    volumes:
+      - 'redis_data:/bitnami/redis/data'
+    networks:
+       - internal
+  
+  asynqmon:
+    image: hibiken/asynqmon:latest
+    ports:
+      - 8080:8080
+    entrypoint: ["./asynqmon", "--redis-addr=redis:6379", "--redis-password=password@123"]
+    depends_on:
+      - redis
+    networks:
+      - internal
+
+  minio:
+    image: "quay.io/minio/minio"
+    command: server --console-address ":9001" /data
+    restart: always
+    environment:
+      MINIO_ACCESS_KEY: minioadmin
+      MINIO_SECRET_KEY: password@123
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    volumes:
+      - "minio_data:/data"
+
+volumes:
+  postgres:
+  redis_data:
+    driver: local
+  minio_data:
+
+networks
+  internal:
