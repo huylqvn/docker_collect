@@ -12,7 +12,7 @@ services:
       - PGHOST=localhost
       - PGDATABASE=postgres
       - PGUSER=postgres
-      - POSTGRES_PASSWORD=password@123
+      - POSTGRES_PASSWORD=0Canpass!!!
     volumes:
       - postgres:/var/lib/postgresql/data
 
@@ -20,7 +20,7 @@ services:
     image: 'bitnami/redis:7.0'
     restart: always
     environment:
-      - REDIS_PASSWORD=password@123
+      - REDIS_PASSWORD=0Canpass!!!
       - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
     ports:
       - '6379:6379'
@@ -33,7 +33,7 @@ services:
     image: hibiken/asynqmon:latest
     ports:
       - 8080:8080
-    entrypoint: ["./asynqmon", "--redis-addr=redis:6379", "--redis-password=password@123"]
+    entrypoint: ["./asynqmon", "--redis-addr=redis:6379", "--redis-password=0Canpass!!!"]
     depends_on:
       - redis
     networks:
@@ -45,7 +45,7 @@ services:
     restart: always
     environment:
       MINIO_ACCESS_KEY: minioadmin
-      MINIO_SECRET_KEY: password@123
+      MINIO_SECRET_KEY: 0Canpass!!!
     ports:
       - '9000:9000'
       - '9001:9001'
@@ -58,5 +58,5 @@ volumes:
     driver: local
   minio_data:
 
-networks
+networks:
   internal:
